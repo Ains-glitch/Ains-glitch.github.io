@@ -5,7 +5,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    /* Background + base styling */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Exo 2', sans-serif;
+      color: #e0d7ff;
+      background: radial-gradient(ellipse at bottom, #1b0033 0%, #000000 100%);
+      overflow-x: hidden;
+    }
+
+    h1, h2 {
+      font-family: 'Orbitron', sans-serif;
+    }
+
     img {
       width: 300px;
       height: 300px;
@@ -16,37 +28,15 @@
       border: 2px solid #bb86fc;
       box-shadow: 0 0 20px rgba(187, 134, 252, 0.4);
     }
-    
-    body {
-      margin: 0;
-      padding: 0;
-      h1, h2 {
-      font-family: 'Orbitron', sans-serif;
-      }
-      
-      body {
-      font-family: 'Exo 2', sans-serif;
-      }
-      color: #e0d7ff;
-      background: radial-gradient(ellipse at bottom, #1b0033 0%, #000000 100%);
-      overflow-x: hidden;
-    }
 
-    /* Star field */
     .stars {
       width: 1px;
       height: 1px;
       background: transparent;
       box-shadow:
-        100px 200px #fff,
-        300px 400px #bb86fc,
-        500px 100px #fff,
-        700px 300px #9a6bff,
-        900px 500px #fff,
-        200px 800px #bb86fc,
-        600px 700px #fff,
-        1200px 200px #d0b3ff,
-        1500px 600px #fff;
+        100px 200px #fff, 300px 400px #bb86fc, 500px 100px #fff,
+        700px 300px #9a6bff, 900px 500px #fff, 200px 800px #bb86fc,
+        600px 700px #fff, 1200px 200px #d0b3ff, 1500px 600px #fff;
       animation: moveStars 60s linear infinite;
       position: fixed;
       top: 0;
@@ -58,14 +48,33 @@
       to { transform: translateY(-2000px); }
     }
 
-    /* Content container */
     .container {
       max-width: 800px;
       margin: auto;
       padding: 20px;
     }
 
-    /* Cards */
+    /* centers the header section */
+    .header {
+      text-align: center;
+      padding-top: 40px;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    /* subtitle under name */
+    .header .subtitle {
+      font-size: 0.95rem;
+      color: #bb86fc;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
     .card {
       background: rgba(255, 255, 255, 0.05);
       border-radius: 12px;
@@ -75,7 +84,11 @@
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    /* Links */
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px rgba(187, 134, 252, 0.4);
+    }
+
     a {
       color: #9a6bff;
       text-decoration: none;
@@ -84,29 +97,27 @@
     a:hover {
       color: #d0b3ff;
     }
-
   </style>
 </head>
-
 <body>
-
-  <!-- animated stars -->
   <div class="stars"></div>
 
-  <h1>Ainsley Helgerson</h1>
-  <img src="image.jpg" alt="Ainsley headshot">
-  <div class="container">
+  <!-- Header inside a centered wrapper -->
+  <div class="header">
+    <h1>Ainsley Helgerson</h1>
+    <p class="subtitle">Solar Physics · Stellar Variability · MHD</p>
+    <img src="image.jpg" alt="Ainsley headshot">
+  </div>
 
+  <div class="container">
     <div class="card">
       <h2>About Me</h2>
       <p>Solar Physics | Stellar Variability | Magnetohydrodynamics</p>
     </div>
-
     <div class="card">
       <h2>Research</h2>
       <p>Studying flare activity in M-type stars and heliophysical variability.</p>
     </div>
-
     <div class="card">
       <h2>Projects</h2>
       <ul>
@@ -114,8 +125,6 @@
         <li>Solar Cycle Variability Study</li>
       </ul>
     </div>
-
   </div>
-
 </body>
 </html>
