@@ -354,23 +354,6 @@
       color: var(--text-dim);
     }
 
-    /* ── AWARDS / OUTREACH LISTS ── */
-    .list-items { list-style: none; }
-    .list-items li {
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      display: flex; align-items: baseline; gap: 10px;
-    }
-    .list-items li::before {
-      content: '◆';
-      font-size: 0.45rem;
-      color: var(--purple);
-      flex-shrink: 0;
-      position: relative; top: -2px;
-    }
-
     /* ── CONFERENCES ── */
     .conf-card {
       display: flex; gap: 20px;
@@ -396,31 +379,6 @@
       font-size: 0.82rem;
       color: var(--text-dim);
       font-style: italic;
-    }
-
-    /* ── WORK ── */
-    .work-block {
-      margin-bottom: 28px;
-      padding-bottom: 28px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .work-block:last-child { border-bottom: none; margin-bottom: 0; }
-    .work-block h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.8rem;
-      color: var(--purple-light);
-      margin-bottom: 4px;
-    }
-    .work-block .period {
-      font-size: 0.75rem;
-      color: var(--purple);
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
-    }
-    .work-block p {
-      font-size: 0.88rem;
-      color: var(--text-dim);
-      line-height: 1.7;
     }
 
     /* ── FOOTER ── */
@@ -458,9 +416,7 @@
   <a href="#research">Research</a>
   <a href="#publications">Publications</a>
   <a href="#skills">Skills</a>
-  <a href="#work">Experience</a>
   <a href="#conferences">Conferences</a>
-  <a href="#awards">Awards</a>
 </nav>
 
 <!-- Hero -->
@@ -665,20 +621,6 @@
         <span class="skill-tag">Academic Tutoring</span>
         <span class="skill-tag">Lab Instruction</span>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Work Experience -->
-<section id="work">
-  <div class="section-inner">
-    <p class="section-label">Professional History</p>
-    <h2 class="section-title">Work Experience</h2>
-    <div class="work-block">
-      <h3>ERAU Orientation Team Ambassador</h3>
-      <p class="period">Fall 2021 – Fall 2024 · Embry-Riddle Aeronautical University</p>
-      <p>Welcomed incoming students to ERAU, specializing in supporting first-year physics students through guided tours and 
-        questionnaires in a time-intensive team environment.</p>
     </div>
   </div>
 </section>
