@@ -1,17 +1,133 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ainsley | Solar Physics</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>Ainsley</h1>
-  <p>Solar Physics | Stellar Variability | MHD</p>
+  <title>Ainsley | Heliophysics</title>
 
-  <h2>Projects</h2>
-  <ul>
-    <li>Castor C Flare Analysis</li>
-    <li>Solar Cycle Variability Study</li>
-  </ul>
+  <style>
+    /* 🌌 Background + base styling */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: #e0d7ff;
+      background: radial-gradient(ellipse at bottom, #1b0033 0%, #000000 100%);
+      overflow-x: hidden;
+    }
+
+    /* ⭐ Star field */
+    .stars {
+      width: 1px;
+      height: 1px;
+      background: transparent;
+      box-shadow:
+        100px 200px #fff,
+        300px 400px #bb86fc,
+        500px 100px #fff,
+        700px 300px #9a6bff,
+        900px 500px #fff,
+        200px 800px #bb86fc,
+        600px 700px #fff,
+        1200px 200px #d0b3ff,
+        1500px 600px #fff;
+      animation: moveStars 60s linear infinite;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    @keyframes moveStars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-2000px); }
+    }
+
+    /* 🌟 Glow text */
+    h1 {
+      text-align: center;
+      font-size: 3em;
+      color: #bb86fc;
+      text-shadow: 0 0 10px #bb86fc, 0 0 20px #9a6bff;
+      margin-top: 60px;
+    }
+
+    h2 {
+      color: #bb86fc;
+      text-shadow: 0 0 8px #bb86fc;
+    }
+
+    /* 🪐 Content container */
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* ✨ Cards */
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 0 15px rgba(187, 134, 252, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(187, 134, 252, 0.5);
+    }
+
+    /* 🔗 Links */
+    a {
+      color: #9a6bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #d0b3ff;
+    }
+
+    /* 🌠 subtle floating animation */
+    .card {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ⭐ animated stars -->
+  <div class="stars"></div>
+
+  <h1>Ainsley</h1>
+
+  <div class="container">
+
+    <div class="card">
+      <h2>About Me</h2>
+      <p>Solar Physics | Stellar Variability | Magnetohydrodynamics</p>
+    </div>
+
+    <div class="card">
+      <h2>Research</h2>
+      <p>Studying flare activity in M-type stars and heliophysical variability.</p>
+    </div>
+
+    <div class="card">
+      <h2>Projects</h2>
+      <ul>
+        <li>Castor C Flare Analysis</li>
+        <li>Solar Cycle Variability Study</li>
+      </ul>
+    </div>
+
+  </div>
+
 </body>
 </html>
