@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ainsley Helgerson | Heliophysicist</title>
+<meta name="description" content="Ainsley M. Helgerson — PhD Student, Electrical & Computer Engineering, University of Florida. Heliophysics, solar wind, and space weather research.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===================================================================
+   TOKENS
+=================================================================== */
+:root{
+  --bg-void:        #0a0e1a;
+  --bg-panel:       #0f1526;
+  --bg-panel-raise: #131b32;
+  --line:           rgba(143,156,191,0.16);
+  --line-bright:    rgba(143,156,191,0.32);
+
+  --ink-1:          #e9ebf3;
+  --ink-2:          #aab2c8;
+  --ink-3:          #6f7791;
+
+  --sun:            #f2a65a;
+  --sun-dim:        #c98447;
+  --plasma:         #5fc9c0;
+  --plasma-dim:     #3d8f88;
+  --storm:          #b08bf2;
+
+  --font-display:   'Source Serif 4', Georgia, serif;
+  --font-body:       'Inter', -apple-system, sans-serif;
+  --font-mono:       'IBM Plex Mono', monospace;
+
+  --maxw: 1080px;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  background:var(--bg-void);
+  color:var(--ink-1);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed; inset:0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(233,235,243,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 15%, rgba(233,235,243,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 65%, rgba(233,235,243,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 80%, rgba(233,235,243,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 85%, rgba(233,235,243,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 40%, rgba(233,235,243,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 92%, rgba(233,235,243,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 50%, rgba(233,235,243,0.35) 0%, transparent 100%);
+  background-size: 800px 800px;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.6;
+}
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+::selection{ background:var(--sun-dim); color:var(--bg-void); }
+
+:focus-visible{
+  outline:2px solid var(--plasma);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+.wrap{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 28px;
+  position:relative;
+  z-index:1;
+}
+
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--plasma);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+}
+.eyebrow::before{
+  content:'';
+  width:16px; height:1px;
+  background:var(--plasma);
+  display:inline-block;
+}
+
+h1,h2,h3,h4{ font-family:var(--font-display); font-weight:600; color:var(--ink-1); }
+
+.section-title{
+  font-size:clamp(28px,4vw,38px);
+  font-weight:600;
+  letter-spacing:-0.01em;
+  margin-bottom:6px;
+}
+.section-sub{
+  color:var(--ink-3);
+  font-size:15px;
+  margin-bottom:48px;
+  max-width:560px;
+}
+
+section{
+  position:relative;
+  padding:96px 0;
+  border-bottom:1px solid var(--line);
+}
+section:last-of-type{ border-bottom:none; }
+
+/* ===================================================================
+   NAV
+=================================================================== */
+nav{
+  position:sticky; top:0; z-index:50;
+  background:rgba(10,14,26,0.82);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+nav .wrap{
+  display:flex; align-items:center; justify-content:space-between;
+  height:64px;
+}
+.nav-mark{
+  font-family:var(--font-mono);
+  font-size:13px;
+  color:var(--ink-2);
+  letter-spacing:0.04em;
+}
+.nav-mark b{ color:var(--ink-1); font-weight:500; }
+.nav-links{
+  display:flex; gap:28px;
+  font-size:13px;
+  font-family:var(--font-mono);
+  letter-spacing:0.02em;
+}
+.nav-links a{
+  color:var(--ink-3);
+  transition:color .2s ease;
+  position:relative;
+  padding:4px 0;
+}
+.nav-links a:hover{ color:var(--ink-1); }
+.nav-toggle{
+  display:none;
+  background:none; border:none; color:var(--ink-1);
+  font-size:22px; cursor:pointer;
+  width:36px; height:36px;
+}
+
+@media (max-width:760px){
+  .nav-links{
+    position:fixed; top:64px; left:0; right:0;
+    background:var(--bg-panel);
+    flex-direction:column; gap:0;
+    border-bottom:1px solid var(--line);
+    max-height:0; overflow:hidden;
+    transition:max-height .25s ease;
+  }
+  .nav-links.open{ max-height:340px; }
+  .nav-links a{ padding:14px 28px; border-bottom:1px solid var(--line); width:100%; }
+  .nav-toggle{ display:block; }
+}
+
+/* ===================================================================
+   HERO
+=================================================================== */
+#hero{
+  padding:80px 0 110px;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap:56px;
+  align-items:center;
+}
+@media (max-width:840px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .hero-art{ order:-1; max-width:280px; margin:0 auto 8px; }
+}
+
+.hero-name{
+  font-size:clamp(36px,5.4vw,58px);
+  line-height:1.04;
+  letter-spacing:-0.015em;
+  margin-bottom:18px;
+}
+.hero-role{
+  font-family:var(--font-mono);
+  font-size:15px;
+  color:var(--sun);
+  letter-spacing:0.01em;
+  margin-bottom:22px;
+}
+.hero-role .sep{ color:var(--ink-3); margin:0 8px; }
+.hero-desc{
+  color:var(--ink-2);
+  font-size:16.5px;
+  max-width:480px;
+  margin-bottom:30px;
+}
+.hero-desc strong{ color:var(--ink-1); font-weight:600; }
+
+.hero-links{
+  display:flex; flex-wrap:wrap; gap:10px 18px;
+  font-family:var(--font-mono);
+  font-size:13px;
+}
+.hero-links a{
+  color:var(--ink-2);
+  border-bottom:1px solid transparent;
+  transition:color .2s ease, border-color .2s ease;
+}
+.hero-links a:hover{ color:var(--plasma); border-color:var(--plasma-dim); }
+
+.hero-art{
+  position:relative;
+  aspect-ratio:1/1;
+  display:flex; align-items:center; justify-content:center;
+}
+.hero-art svg{ width:100%; height:100%; }
+
+@media (prefers-reduced-motion: no-preference){
+  .sw-line{ animation: drift 14s linear infinite; transform-origin:200px 200px; }
+  .sw-line:nth-child(odd){ animation-direction:reverse; animation-duration:20s; }
+  .sw-dot{ animation: pulse-dot 3.4s ease-in-out infinite; }
+  .sun-core{ animation: glow 5s ease-in-out infinite; }
+}
+@keyframes drift{ from{ transform:rotate(0deg);} to{ transform:rotate(360deg);} }
+@keyframes pulse-dot{ 0%,100%{ opacity:0.25; } 50%{ opacity:0.95; } }
+@keyframes glow{ 0%,100%{ filter:drop-shadow(0 0 10px rgba(242,166,90,0.55)); } 50%{ filter:drop-shadow(0 0 22px rgba(242,166,90,0.85)); } }
+
+/* ===================================================================
+   ABOUT
+=================================================================== */
+#about .about-grid{
+  display:grid;
+  grid-template-columns: 220px 1fr;
+  gap:48px;
+}
+@media (max-width:760px){ #about .about-grid{ grid-template-columns:1fr; } }
+.about-stats{ display:flex; flex-direction:column; gap:26px; }
+.stat{ border-left:2px solid var(--plasma-dim); padding-left:14px; }
+.stat-num{ font-family:var(--font-display); font-size:26px; color:var(--ink-1); font-weight:600; }
+.stat-label{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em; margin-top:2px; }
+.about-text p{ color:var(--ink-2); font-size:16px; margin-bottom:16px; max-width:620px; }
+.about-text strong{ color:var(--ink-1); font-weight:600; }
+
+/* ===================================================================
+   EDUCATION — observation log style
+=================================================================== */
+.log-entry{
+  display:grid;
+  grid-template-columns: 150px 1fr;
+  gap:28px;
+  padding:26px 0;
+  border-top:1px solid var(--line);
+}
+.log-entry:first-of-type{ border-top:1px solid var(--line-bright); }
+@media (max-width:640px){ .log-entry{ grid-template-columns:1fr; gap:6px; } }
+.log-date{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  color:var(--ink-3);
+  letter-spacing:0.03em;
+  padding-top:3px;
+}
+.log-title{ font-size:18px; font-weight:600; color:var(--ink-1); margin-bottom:6px; font-family:var(--font-display);}
+.log-org{ color:var(--sun); font-size:13.5px; margin-bottom:8px; font-family:var(--font-mono); }
+.log-desc{ color:var(--ink-2); font-size:14.5px; max-width:600px; }
+.log-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+.tag{
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--plasma);
+  border:1px solid var(--plasma-dim);
+  padding:3px 9px;
+  border-radius:20px;
+  letter-spacing:0.02em;
+}
+.tag.storm{ color:var(--storm); border-color:#6e549c; }
+
+/* ===================================================================
+   RESEARCH cards
+=================================================================== */
+.research-feature{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:40px;
+  padding:34px 0;
+  border-top:1px solid var(--line);
+  align-items:start;
+}
+.research-feature:first-of-type{ border-top:1px solid var(--line-bright); }
+@media (max-width:760px){ .research-feature{ grid-template-columns:1fr; gap:18px; } }
+
+.rf-meta{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:10px; }
+.rf-meta.lead{ color:var(--sun); }
+.rf-meta.side{ color:var(--storm); }
+.rf-title{ font-size:21px; margin-bottom:12px; line-height:1.25; }
+.rf-desc{ color:var(--ink-2); font-size:15px; margin-bottom:16px; }
+.rf-links{ display:flex; gap:16px; font-family:var(--font-mono); font-size:12.5px; }
+.rf-links a{
+  color:var(--plasma);
+  display:inline-flex; align-items:center; gap:6px;
+  border-bottom:1px solid var(--plasma-dim);
+  padding-bottom:1px;
+}
+.rf-links a:hover{ color:var(--ink-1); border-color:var(--ink-1); }
+.rf-badges{ display:flex; flex-wrap:wrap; gap:8px; }
+
+.minor-projects{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+@media (max-width:640px){ .minor-projects{ grid-template-columns:1fr; } }
+.minor-card{ background:var(--bg-panel); padding:24px; }
+.minor-card .rf-meta{ margin-bottom:8px; }
+.minor-card h4{ font-size:16px; margin-bottom:8px; font-family:var(--font-display); }
+.minor-card p{ color:var(--ink-2); font-size:13.5px; }
+
+/* ===================================================================
+   PUBLICATIONS
+=================================================================== */
+.pub{
+  padding:24px 0;
+  border-top:1px solid var(--line);
+  display:grid;
+  grid-template-columns: 100px 1fr;
+  gap:24px;
+}
+.pub:first-of-type{ border-top:1px solid var(--line-bright); }
+@media (max-width:640px){ .pub{ grid-template-columns:1fr; gap:8px; } }
+.pub-status{
+  font-family:var(--font-mono);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  color:var(--sun);
+  height:fit-content;
+}
+.pub-title{ font-size:16.5px; color:var(--ink-1); margin-bottom:6px; font-family:var(--font-display); font-weight:600; }
+.pub-authors{ color:var(--ink-3); font-size:13.5px; margin-bottom:4px; }
+.pub-authors b{ color:var(--ink-2); font-weight:600; }
+.pub-ref{ font-family:var(--font-mono); font-size:12px; color:var(--ink-3); }
+
+/* ===================================================================
+   CONFERENCES — compact timeline
+=================================================================== */
+.conf-list{ display:flex; flex-direction:column; }
+.conf-row{
+  display:grid;
+  grid-template-columns: 120px 1fr;
+  gap:24px;
+  padding:18px 0;
+  border-top:1px solid var(--line);
+}
+.conf-row:first-of-type{ border-top:1px solid var(--line-bright); }
+@media (max-width:640px){ .conf-row{ grid-template-columns:1fr; gap:4px; } }
+.conf-date{ font-family:var(--font-mono); font-size:12px; color:var(--ink-3); padding-top:2px; }
+.conf-name{ font-size:15px; font-weight:600; color:var(--ink-1); }
+.conf-detail{ font-size:13.5px; color:var(--ink-2); margin-top:3px; }
+.conf-mentor{ font-size:12.5px; color:var(--ink-3); margin-top:4px; font-style:italic; }
+
+/* ===================================================================
+   SKILLS
+=================================================================== */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+.skill-card{ background:var(--bg-panel); padding:26px; }
+.skill-level{
+  font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase;
+  color:var(--plasma); letter-spacing:0.08em; margin-bottom:6px;
+}
+.skill-name{ font-size:17px; font-weight:600; margin-bottom:10px; font-family:var(--font-display); }
+.skill-list{ font-size:12.5px; color:var(--ink-3); line-height:1.7; }
+
+/* ===================================================================
+   FOOTER
+=================================================================== */
+footer{ padding:56px 0 70px; text-align:center; }
+.footer-mark{ font-family:var(--font-mono); font-size:12px; color:var(--ink-3); }
+.footer-links{ margin-top:14px; display:flex; gap:20px; justify-content:center; font-family:var(--font-mono); font-size:12.5px; }
+.footer-links a{ color:var(--ink-2); }
+.footer-links a:hover{ color:var(--plasma); }
+.footer-sig{ margin-top:28px; color:var(--ink-3); font-size:12px; }
+
+/* divider sun glyph between sections */
+.glyph-divider{ display:flex; justify-content:center; padding:0; opacity:0.5; }
+.glyph-divider svg{ width:46px; height:20px; }
+
+@media (max-width:600px){
+  section{ padding:64px 0; }
+  .section-sub{ margin-bottom:32px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-mark"><b>A. HELGERSON</b> · heliophysics</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#conferences">Conferences</a>
+      <a href="#skills">Skills</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================== HERO ============================== -->
+<section id="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Gainesville, FL</div>
+      <h1 class="hero-name">Ainsley M.<br>Helgerson</h1>
+      <div class="hero-role">PhD Student, Electrical &amp; Computer Engineering — University of Florida<span class="sep">/</span>Heliophysicist</div>
+      <p class="hero-desc">I study how the Sun's wind shapes the space around our planet — <strong>stream interaction regions, geomagnetic substorms, and the solar sources of ambient space weather.</strong> NASA OSTEM intern, Summer 2026.</p>
+      <div class="hero-links">
+        <a href="mailto:a.helgerson@ufl.edu">a.helgerson@ufl.edu</a>
+        <a href="https://orcid.org/0009-0000-0703-5992" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://www.linkedin.com/in/ainsley-helgerson-a54397241" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Ains-glitch" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <defs>
+          <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffd9a0"/>
+            <stop offset="55%" stop-color="#f2a65a"/>
+            <stop offset="100%" stop-color="#c98447"/>
+          </radialGradient>
+        </defs>
+        <g stroke="#3d8f88" stroke-width="1" fill="none" opacity="0.55">
+          <circle class="sw-line" cx="200" cy="200" r="190" stroke-dasharray="2 10"/>
+          <circle class="sw-line" cx="200" cy="200" r="155" stroke-dasharray="1 8"/>
+          <circle class="sw-line" cx="200" cy="200" r="120" stroke-dasharray="3 6"/>
+        </g>
+        <!-- spiral field lines (Parker spiral nod) -->
+        <g stroke="#5fc9c0" stroke-width="1.1" fill="none" opacity="0.65">
+          <path class="sw-line" d="M200,200 C260,160 320,180 350,250" />
+          <path class="sw-line" d="M200,200 C150,150 90,170 55,240" />
+          <path class="sw-line" d="M200,200 C250,250 300,320 270,370" />
+          <path class="sw-line" d="M200,200 C150,250 100,310 130,365" />
+        </g>
+        <circle class="sw-dot" cx="350" cy="250" r="3" fill="#f2a65a"/>
+        <circle class="sw-dot" cx="55" cy="240" r="2.4" fill="#f2a65a"/>
+        <circle class="sw-dot" cx="270" cy="370" r="2.8" fill="#b08bf2"/>
+        <circle class="sw-dot" cx="130" cy="365" r="2.2" fill="#5fc9c0"/>
+        <circle class="sun-core" cx="200" cy="200" r="46" fill="url(#sunGrad)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ABOUT ============================== -->
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="section-title">About</h2>
+    <p class="section-sub">From telescope domes to the heliosphere — a path through space physics, astronomy, and now electrical engineering.</p>
+
+    <div class="about-grid">
+      <div class="about-stats">
+        <div class="stat"><div class="stat-num">2031</div><div class="stat-label">Expected PhD</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label">B.S. degrees, ERAU</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label">NASA-affiliated programs</div></div>
+      </div>
+      <div class="about-text">
+        <p>I'm a <strong>PhD student in Electrical &amp; Computer Engineering at the University of Florida</strong>, researching the solar origins and geospace effects of stream interaction regions in the solar wind. My work combines Wang-Sheeley-Arge (WSA) and ADAPT-WSA modeling with spacecraft observations to better understand how the Sun's ambient wind drives space weather at Earth.</p>
+        <p>I came to this from Embry-Riddle Aeronautical University, where I earned dual B.S. degrees in <strong>Space Physics</strong> and <strong>Astronomy &amp; Astrophysics</strong> (Cum Laude) with a minor in Applied Mathematics. Alongside my heliophysics research, I lead a NASA Florida Space Grant-funded project using muon detection to predict lightning strikes, and spent two summers training at HAARP and NASA's SHIELD DRIVE Center.</p>
+        <p>This summer, I'm continuing that work as a <strong>NASA Office of STEM Engagement (OSTEM) intern.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== EDUCATION ============================== -->
+<section id="education">
+  <div class="wrap">
+    <div class="eyebrow">Academic Record</div>
+    <h2 class="section-title">Education &amp; Training</h2>
+    <p class="section-sub">A log of where the physics was learned.</p>
+
+    <div class="log-entry">
+      <div class="log-date">2026 — Spring 2031</div>
+      <div>
+        <div class="log-title">Doctor of Philosophy, Electrical &amp; Computer Engineering</div>
+        <div class="log-org">University of Florida · Gainesville, FL</div>
+        <div class="log-desc">Advised by Dr. Robert Moore. Dissertation research on solar wind structure and geospace response.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">2021 — 2025</div>
+      <div>
+        <div class="log-title">B.S. Space Physics &amp; B.S. Astronomy and Astrophysics</div>
+        <div class="log-org">Embry-Riddle Aeronautical University · Daytona Beach, FL</div>
+        <div class="log-desc">Minor in Applied Mathematics. Graduated Cum Laude, Honors Program.</div>
+        <div class="log-tags"><span class="tag">Cum Laude</span><span class="tag">Honors Program</span><span class="tag">Provost Scholarship</span></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">Summer 2025</div>
+      <div>
+        <div class="log-title">Polar Aeronomy and Radio Science (PARS) Summer School</div>
+        <div class="log-org">University of Alaska Fairbanks &amp; HAARP</div>
+        <div class="log-desc">Conducted an ionospheric heating experiment at HAARP; trained in IRI experiment design, diagnostics, and data analysis with NSF's SAGO facilities.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">Summer 2025</div>
+      <div>
+        <div class="log-title">SHIELD Summer School</div>
+        <div class="log-org">NASA SHIELD DRIVE Center · Boston, MA</div>
+        <div class="log-desc">MHD fundamentals, solar wind variability, magnetic reconnection, and energetic neutral atom (ENA) measurements — plus the structure and evolution of the heliosphere from modern and paleo perspectives.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== RESEARCH ============================== -->
+<section id="research">
+  <div class="wrap">
+    <div class="eyebrow">Projects &amp; Investigations</div>
+    <h2 class="section-title">Research</h2>
+    <p class="section-sub">Current work sits at the intersection of solar wind physics and space weather forecasting.</p>
+
+    <div class="research-feature">
+      <div>
+        <div class="rf-meta lead">NASA OSTEM Internship · Fall 2025 – Summer 2026</div>
+        <div class="rf-title">Characterizing the Solar Sources and Geospace Response of Isolated Stream Interaction Regions with Embedded Periodic Mesoscale Solar Wind Structures</div>
+        <div class="rf-links">
+          <a href="#publications">→ In-progress manuscript</a>
+        </div>
+      </div>
+      <div>
+        <div class="rf-meta">Method</div>
+        <p class="rf-desc">Investigating the solar sources, solar wind properties, and geospace impacts of isolated stream interaction regions (SIRs) using Wang-Sheeley-Arge (WSA) modeling and spacecraft observations, to improve understanding of ambient solar wind-driven space weather. Presented as a poster at the 57th AAS Solar Physics Division Conference, August 2026.</p>
+        <div class="rf-badges"><span class="tag">WSA Model</span><span class="tag">SIRs</span><span class="tag">Space Weather</span></div>
+      </div>
+    </div>
+
+    <div class="research-feature">
+      <div>
+        <div class="rf-meta side">Principal Investigator · Fall 2024 – Spring 2026</div>
+        <div class="rf-title">BoTTLE — Bounded Transient Time Leader Emissions Tracking &amp; Strike Prediction</div>
+        <div class="rf-links">
+          <a href="bottle.pdf" target="_blank">→ View poster</a>
+        </div>
+      </div>
+      <div>
+        <div class="rf-meta">Method</div>
+        <p class="rf-desc">Leading a NASA Florida Space Grant Consortium and ERAU-funded project predicting lightning strikes using an array of muon detectors alongside RADAR data, examining correlations between muon flux and lightning discharge. 2025 NASA FSGC Grant Winner; 2025–2026 ERAU IGNITE Grant Award Nominee.</p>
+        <div class="rf-badges"><span class="tag storm">Muon Detection</span><span class="tag storm">RADAR</span><span class="tag storm">Atmospheric Physics</span></div>
+      </div>
+    </div>
+
+    <div class="research-feature">
+      <div>
+        <div class="rf-meta">Spring 2025</div>
+        <div class="rf-title">Solar Sources of Ambient Solar Wind-Driven Substorms with ADAPT-WSA</div>
+        <div class="rf-links">
+          <a href="wsa.pdf" target="_blank">→ View poster</a>
+        </div>
+      </div>
+      <div>
+        <div class="rf-meta">Method</div>
+        <p class="rf-desc">Investigating geoeffective solar wind formation linked to substorm activity using the ADAPT-WSA model; developing methods to classify solar wind properties and identify source regions tied to geomagnetic substorms, excluding large-scale solar events.</p>
+        <div class="rf-badges"><span class="tag">ADAPT-WSA</span><span class="tag">Substorms</span></div>
+      </div>
+    </div>
+
+    <div class="minor-projects">
+      <div class="minor-card">
+        <div class="rf-meta">Spring 2025</div>
+        <h4>Photometric Variability &amp; Habitable Zones — Castor C</h4>
+        <p>Investigated stellar flare activity in the M-dwarf system Castor C using the ERAU 1-meter telescope to assess impacts on exoplanet habitability.</p>
+      </div>
+      <div class="minor-card">
+        <div class="rf-meta">Spring 2025</div>
+        <h4>Structural Analysis of Galaxy NGC 3665</h4>
+        <p>Modeled surface brightness profiles from DECam g, r, and z filter data to infer the galaxy's evolutionary history via 1D/2D light-distribution fitting in Python.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PUBLICATIONS ============================== -->
+<section id="publications">
+  <div class="wrap">
+    <div class="eyebrow">Scholarly Work</div>
+    <h2 class="section-title">Publications</h2>
+    <p class="section-sub">One paper in progress, one under review.</p>
+
+    <div class="pub">
+      <div class="pub-status">In Progress</div>
+      <div>
+        <div class="pub-title">Characterizing the Solar Sources and Geospace Response of Isolated Stream Interaction Regions with Embedded Periodic Mesoscale Solar Wind Structures</div>
+        <div class="pub-authors"><b>Helgerson, A.</b>, Wallace, S., Viall, N. M., Kepko, L., &amp; Di Matteo, S.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-status">Under Review</div>
+      <div>
+        <div class="pub-title">Universal Scaling Law of Electron Energization in 3-D Reconnection: Application to Astrophysical Plasmas</div>
+        <div class="pub-authors">Liou, Y.-L., Nykyri, K., Ma, X., <b>Helgerson, A.</b>, Otto, A., Egedal, J., &amp; Gradney, P.</div>
+        <div class="pub-ref">Manuscript ID: NATASTRON-25121648</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CONFERENCES ============================== -->
+<section id="conferences">
+  <div class="wrap">
+    <div class="eyebrow">Presentations &amp; Events</div>
+    <h2 class="section-title">Conferences &amp; Symposiums</h2>
+    <p class="section-sub">Selected highlights — full list available on request.</p>
+
+    <div class="conf-list">
+      <div class="conf-row">
+        <div class="conf-date">Aug 2026</div>
+        <div>
+          <div class="conf-name">57th AAS Solar Physics Division (SPD) Conference</div>
+          <div class="conf-detail">Poster: Characterizing the Solar Sources and Geospace Response of Isolated SIRs with Embedded Periodic Mesoscale Solar Wind Structures.</div>
+          <div class="conf-mentor">Mentors: Nicholeen M. Viall, Samantha Wallace</div>
+        </div>
+      </div>
+      <div class="conf-row">
+        <div class="conf-date">Apr 2026</div>
+        <div>
+          <div class="conf-name">ERAU Discovery Day</div>
+          <div class="conf-detail">Poster: BoTTLE — Bounded Thunderstorm Tracking of Lightning Events with Muon Detection.</div>
+          <div class="conf-mentor">Mentor: Dr. Jeremy Riousset</div>
+        </div>
+      </div>
+      <div class="conf-row">
+        <div class="conf-date">Dec 2025</div>
+        <div>
+          <div class="conf-name">American Geophysical Union (AGU) Conference</div>
+          <div class="conf-detail">COFFIES outreach participation; attended talks and oral sessions.</div>
+        </div>
+      </div>
+      <div class="conf-row">
+        <div class="conf-date">Oct 2025</div>
+        <div>
+          <div class="conf-name">DASH / IHDEA Conference</div>
+          <div class="conf-detail">Discussed open-source heliophysics platforms; attended workshops and poster sessions.</div>
+        </div>
+      </div>
+      <div class="conf-row">
+        <div class="conf-date">Dec 2024</div>
+        <div>
+          <div class="conf-name">American Geophysical Union (AGU) Conference</div>
+          <div class="conf-detail">Poster: Analyzing Short-term Solar Activity Bursts — Exploring the Capability for Predicting Next Burst's Properties.</div>
+          <div class="conf-mentor">Mentors: Dr. Masusumi Dikpati, Kiran Jain, Breno Raphaldini</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SKILLS ============================== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow">Technical Expertise</div>
+    <h2 class="section-title">Skills</h2>
+    <p class="section-sub">Software, hardware, and the platforms tying it all together.</p>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-level">Expert</div>
+        <div class="skill-name">MATLAB</div>
+        <div class="skill-list">Numerical computation &amp; simulation, algorithm development<br>Curve Fitting · Deep Learning · Signal Processing · Symbolic Math</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-level">Expert</div>
+        <div class="skill-name">Python</div>
+        <div class="skill-list">Astropy · Pandas · NumPy · Matplotlib · Seaborn · Photutils<br>Pyimfit · Streamlit · Qiskit · Lightkurve · SunPy</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-level">Expert</div>
+        <div class="skill-name">LaTeX</div>
+        <div class="skill-list">Research paper design &amp; publishing<br>Overleaf workflow</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-level">Trained</div>
+        <div class="skill-name">ERAU 1-m Cassegrain Telescope</div>
+        <div class="skill-list">CCD camera systems · filter wheels · spectrograph alignment<br>Dome operation · guiding · data acquisition</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-level">Expert</div>
+        <div class="skill-name">PASCO Capstone 850</div>
+        <div class="skill-list">Voltage, current, temperature, force, motion, light, sound,<br>acceleration &amp; magnetic field sensors · photogates</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-level">Platforms</div>
+        <div class="skill-name">Tools &amp; Software</div>
+        <div class="skill-list">PyCharm · VS Code · Jupyter · GitHub · Overleaf<br>Google Colab · AstroImageJ · SAOImageDS9 · Canvas Instructor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-mark">AINSLEY M. HELGERSON · Gainesville, FL</div>
+    <div class="footer-links">
+      <a href="mailto:a.helgerson@ufl.edu">Email</a>
+      <a href="https://orcid.org/0009-0000-0703-5992" target="_blank" rel="noopener">ORCID</a>
+      <a href="https://www.linkedin.com/in/ainsley-helgerson-a54397241" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Ains-glitch" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="footer-sig">Built with ☀️ and a love for heliophysics</div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>
+
+</body>
+</html>
