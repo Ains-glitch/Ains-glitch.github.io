@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☀️ Ainsley Helgerson | Heliophysicist</title>
+<meta name="description" content="Ainsley M. Helgerson — PhD Student, Electrical & Computer Engineering, University of Florida. Heliophysics, solar wind, and space weather research.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ===================================================================
+   TOKENS
+=================================================================== */
+:root{
+  --bg-void:        #08071a;
+  --bg-panel:       #0e0d24;
+  --bg-panel-raise: #13122e;
+  --line:           rgba(160,140,220,0.14);
+  --line-bright:    rgba(160,140,220,0.28);
+
+  --ink-1:          #eceaf8;
+  --ink-2:          #b0a8d0;
+  --ink-3:          #6e6690;
+
+  --sun:            #f2a65a;
+  --sun-dim:        #c98447;
+  --plasma:         #9b7fe8;
+  --plasma-dim:     #6b50b8;
+  --plasma-bright:  #c4a8ff;
+  --storm:          #e87fd8;
+  --storm-dim:      #a050a0;
+  --teal:           #5fc9c0;
+  --teal-dim:       #3d8f88;
+
+  --font-display:   'Source Serif 4', Georgia, serif;
+  --font-body:      'Inter', -apple-system, sans-serif;
+  --font-mono:      'IBM Plex Mono', monospace;
+
+  --maxw: 1080px;
+  --nav-h: 64px;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  background:var(--bg-void);
+  color:var(--ink-1);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* starfield */
+body::before{
+  content:'';
+  position:fixed; inset:0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(200,190,255,0.55) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 15%, rgba(200,190,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 65%, rgba(200,190,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 80%, rgba(200,190,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 85%, rgba(200,190,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 40%, rgba(200,190,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 92%, rgba(200,190,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 50%, rgba(200,190,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 8%,  rgba(200,190,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 3%  45%, rgba(200,190,255,0.3) 0%, transparent 100%);
+  background-size:900px 900px;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.65;
+}
+
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+::selection{ background:var(--plasma-dim); color:var(--bg-void); }
+:focus-visible{ outline:2px solid var(--plasma); outline-offset:3px; border-radius:2px; }
+
+.wrap{
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 28px;
+  position:relative;
+  z-index:1;
+}
+
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--plasma);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+}
+.eyebrow::before{
+  content:'';
+  width:16px; height:1px;
+  background:var(--plasma);
+  display:inline-block;
+}
+
+h1,h2,h3,h4{ font-family:var(--font-display); font-weight:600; color:var(--ink-1); }
+
+.section-title{
+  font-size:clamp(28px,4vw,38px);
+  font-weight:600;
+  letter-spacing:-0.01em;
+  margin-bottom:6px;
+}
+.section-sub{
+  color:var(--ink-3);
+  font-size:15px;
+  margin-bottom:48px;
+  max-width:560px;
+}
+
+/* ===================================================================
+   PAGE SYSTEM — each "page" is a full view, SPA-style
+=================================================================== */
+.page{
+  display:none;
+  min-height:calc(100vh - var(--nav-h));
+  position:relative;
+  z-index:1;
+  padding-bottom:80px;
+}
+.page.active{ display:block; }
+
+/* ===================================================================
+   NAV
+=================================================================== */
+nav{
+  position:sticky; top:0; z-index:50;
+  background:rgba(8,7,26,0.88);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+  height:var(--nav-h);
+}
+nav .wrap{
+  display:flex; align-items:center; justify-content:space-between;
+  height:100%;
+}
+.nav-mark{
+  font-family:var(--font-mono);
+  font-size:13px;
+  color:var(--ink-2);
+  letter-spacing:0.04em;
+  cursor:pointer;
+  transition:color .2s;
+}
+.nav-mark:hover{ color:var(--ink-1); }
+.nav-mark b{ color:var(--ink-1); font-weight:500; }
+.nav-links{
+  display:flex; gap:24px;
+  font-size:12.5px;
+  font-family:var(--font-mono);
+  letter-spacing:0.02em;
+  align-items:center;
+}
+.nav-links a{
+  color:var(--ink-3);
+  transition:color .2s ease;
+  padding:4px 0;
+  cursor:pointer;
+  background:none; border:none;
+  font-family:var(--font-mono);
+  font-size:12.5px;
+}
+.nav-links a:hover{ color:var(--ink-1); }
+.nav-links a.active{ color:var(--plasma-bright); }
+.nav-contact-btn{
+  color:var(--plasma-bright) !important;
+  border:1px solid var(--plasma-dim) !important;
+  padding:5px 12px !important;
+  border-radius:20px;
+  transition:background .2s, color .2s !important;
+}
+.nav-contact-btn:hover{ background:var(--plasma-dim) !important; color:var(--bg-void) !important; }
+
+.nav-toggle{
+  display:none;
+  background:none; border:none; color:var(--ink-1);
+  font-size:22px; cursor:pointer;
+  width:36px; height:36px;
+}
+
+@media (max-width:840px){
+  .nav-links{
+    position:fixed; top:var(--nav-h); left:0; right:0;
+    background:var(--bg-panel);
+    flex-direction:column; gap:0;
+    border-bottom:1px solid var(--line);
+    max-height:0; overflow:hidden;
+    transition:max-height .25s ease;
+    align-items:stretch;
+  }
+  .nav-links.open{ max-height:420px; }
+  .nav-links a{ padding:14px 28px; border-bottom:1px solid var(--line); }
+  .nav-contact-btn{ margin:12px 28px; border-radius:20px; text-align:center; }
+  .nav-toggle{ display:block; }
+}
+
+/* ===================================================================
+   HERO PAGE
+=================================================================== */
+#page-home{ padding-top:72px; padding-bottom:0; }
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:56px;
+  align-items:center;
+  padding-bottom:80px;
+  border-bottom:1px solid var(--line);
+}
+@media (max-width:840px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .hero-art{ order:-1; max-width:280px; margin:0 auto 8px; }
+}
+.hero-name{
+  font-size:clamp(36px,5.4vw,58px);
+  line-height:1.04;
+  letter-spacing:-0.015em;
+  margin-bottom:18px;
+}
+.hero-role{
+  font-family:var(--font-mono);
+  font-size:14px;
+  color:var(--sun);
+  letter-spacing:0.01em;
+  margin-bottom:22px;
+  line-height:1.6;
+}
+.hero-desc{
+  color:var(--ink-2);
+  font-size:16.5px;
+  max-width:480px;
+  margin-bottom:30px;
+}
+.hero-desc strong{ color:var(--ink-1); font-weight:600; }
+.hero-links{
+  display:flex; flex-wrap:wrap; gap:10px 20px;
+  font-family:var(--font-mono);
+  font-size:12.5px;
+}
+.hero-links a{
+  color:var(--ink-2);
+  border-bottom:1px solid transparent;
+  transition:color .2s ease, border-color .2s ease;
+}
+.hero-links a:hover{ color:var(--plasma-bright); border-color:var(--plasma-dim); }
+
+/* Parker spiral art */
+.hero-art{
+  position:relative;
+  aspect-ratio:1/1;
+  display:flex; align-items:center; justify-content:center;
+}
+.hero-art svg{ width:100%; height:100%; overflow:visible; }
+
+.portrait-ring{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  z-index:2;
+  pointer-events:none;
+}
+.portrait-frame{
+  position:relative;
+  width:50%;
+  aspect-ratio:1/1;
+  border-radius:50%;
+  overflow:hidden;
+  border:2px solid var(--sun-dim);
+  box-shadow:
+    0 0 0 6px var(--bg-void),
+    0 0 0 7px var(--line-bright),
+    0 18px 50px -10px rgba(155,127,232,0.35);
+  background:var(--bg-panel-raise);
+}
+.portrait-frame img{
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:center top;
+  filter:saturate(0.9) contrast(1.04);
+}
+
+/* Parker spiral animation — rotate the whole group around the center */
+@media (prefers-reduced-motion: no-preference){
+  .spiral-group{
+    transform-origin:200px 200px;
+    animation:spiralSpin 60s linear infinite;
+  }
+  .sun-core{ animation:glow 5s ease-in-out infinite; }
+  .sw-dot{ animation:pulse-dot 3.4s ease-in-out infinite; }
+  .sw-dot:nth-child(2){ animation-delay:0.8s; }
+  .sw-dot:nth-child(3){ animation-delay:1.6s; }
+  .sw-dot:nth-child(4){ animation-delay:2.4s; }
+  .orbit-ring{ animation:drift 22s linear infinite; transform-origin:200px 200px; }
+  .orbit-ring:nth-child(2){ animation-duration:34s; animation-direction:reverse; }
+}
+@keyframes spiralSpin{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+@keyframes glow{
+  0%,100%{ filter:drop-shadow(0 0 10px rgba(242,166,90,0.55)); }
+  50%{ filter:drop-shadow(0 0 24px rgba(242,166,90,0.9)); }
+}
+@keyframes pulse-dot{ 0%,100%{ opacity:0.2; r:2.5; } 50%{ opacity:1; r:4; } }
+@keyframes drift{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+
+/* quick-nav below hero */
+.home-quicknav{
+  display:flex; flex-wrap:wrap; gap:10px;
+  padding:36px 0 0;
+  justify-content:center;
+}
+.qn-btn{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--ink-2);
+  border:1px solid var(--line-bright);
+  padding:8px 18px;
+  border-radius:24px;
+  cursor:pointer;
+  background:none;
+  transition:border-color .2s, color .2s, background .2s;
+}
+.qn-btn:hover{ border-color:var(--plasma); color:var(--plasma-bright); background:rgba(155,127,232,0.08); }
+
+/* ===================================================================
+   ABOUT PAGE
+=================================================================== */
+.page-inner{
+  padding-top:72px;
+}
+.about-grid{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:48px;
+  margin-top:16px;
+}
+@media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
+.about-stats{ display:flex; flex-direction:column; gap:26px; }
+.stat{ border-left:2px solid var(--plasma-dim); padding-left:14px; }
+.stat-num{ font-family:var(--font-display); font-size:26px; color:var(--ink-1); font-weight:600; }
+.stat-label{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em; margin-top:2px; }
+.about-text p{ color:var(--ink-2); font-size:16px; margin-bottom:16px; max-width:620px; }
+.about-text strong{ color:var(--ink-1); font-weight:600; }
+
+/* ===================================================================
+   LOG ENTRIES (education)
+=================================================================== */
+.log-entry{
+  display:grid;
+  grid-template-columns:150px 1fr;
+  gap:28px;
+  padding:26px 0;
+  border-top:1px solid var(--line);
+}
+@media (max-width:640px){ .log-entry{ grid-template-columns:1fr; gap:6px; } }
+.log-date{ font-family:var(--font-mono); font-size:12.5px; color:var(--ink-3); letter-spacing:0.03em; padding-top:3px; }
+.log-title{ font-size:18px; font-weight:600; color:var(--ink-1); margin-bottom:6px; font-family:var(--font-display);}
+.log-org{ color:var(--sun); font-size:13.5px; margin-bottom:8px; font-family:var(--font-mono); }
+.log-desc{ color:var(--ink-2); font-size:14.5px; max-width:600px; }
+.log-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+.tag{
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--plasma-bright);
+  border:1px solid var(--plasma-dim);
+  padding:3px 9px;
+  border-radius:20px;
+  letter-spacing:0.02em;
+}
+.tag.storm{ color:var(--storm); border-color:var(--storm-dim); }
+.tag.sun{ color:var(--sun); border-color:var(--sun-dim); }
+
+/* ===================================================================
+   RESEARCH
+=================================================================== */
+.research-feature{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  padding:34px 0;
+  border-top:1px solid var(--line);
+  align-items:start;
+}
+@media (max-width:760px){ .research-feature{ grid-template-columns:1fr; gap:18px; } }
+.rf-meta{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:10px; }
+.rf-meta.lead{ color:var(--sun); }
+.rf-meta.side{ color:var(--storm); }
+.rf-meta.purple{ color:var(--plasma-bright); }
+.rf-title{ font-size:20px; margin-bottom:12px; line-height:1.25; font-family:var(--font-display); font-weight:600; }
+.rf-desc{ color:var(--ink-2); font-size:15px; margin-bottom:16px; }
+.rf-links{ display:flex; gap:16px; font-family:var(--font-mono); font-size:12.5px; }
+.rf-links a{
+  color:var(--plasma-bright);
+  display:inline-flex; align-items:center; gap:6px;
+  border-bottom:1px solid var(--plasma-dim);
+  padding-bottom:1px;
+  transition:color .2s, border-color .2s;
+}
+.rf-links a:hover{ color:var(--ink-1); border-color:var(--ink-1); }
+.rf-badges{ display:flex; flex-wrap:wrap; gap:8px; }
+.minor-projects{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+@media (max-width:640px){ .minor-projects{ grid-template-columns:1fr; } }
+.minor-card{ background:var(--bg-panel); padding:24px; }
+.minor-card h4{ font-size:16px; margin-bottom:8px; font-family:var(--font-display); }
+.minor-card p{ color:var(--ink-2); font-size:13.5px; }
+
+/* ===================================================================
+   PUBLICATIONS
+=================================================================== */
+.pub{
+  padding:24px 0;
+  border-top:1px solid var(--line);
+  display:grid;
+  grid-template-columns:100px 1fr;
+  gap:24px;
+}
+@media (max-width:640px){ .pub{ grid-template-columns:1fr; gap:8px; } }
+.pub-status{
+  font-family:var(--font-mono);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  color:var(--sun);
+}
+.pub-title{ font-size:16.5px; color:var(--ink-1); margin-bottom:6px; font-family:var(--font-display); font-weight:600; }
+.pub-authors{ color:var(--ink-3); font-size:13.5px; margin-bottom:4px; }
+.pub-authors b{ color:var(--ink-2); font-weight:600; }
+.pub-ref{ font-family:var(--font-mono); font-size:12px; color:var(--ink-3); }
+
+/* ===================================================================
+   CONFERENCES
+=================================================================== */
+.conf-list{ display:flex; flex-direction:column; }
+.conf-row{
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:24px;
+  padding:18px 0;
+  border-top:1px solid var(--line);
+}
+@media (max-width:640px){ .conf-row{ grid-template-columns:1fr; gap:4px; } }
+.conf-date{ font-family:var(--font-mono); font-size:12px; color:var(--ink-3); padding-top:2px; }
+.conf-name{ font-size:15px; font-weight:600; color:var(--ink-1); }
+.conf-detail{ font-size:13.5px; color:var(--ink-2); margin-top:3px; }
+.conf-mentor{ font-size:12.5px; color:var(--ink-3); margin-top:4px; font-style:italic; }
+
+/* ===================================================================
+   SKILLS + CODE GALLERY
+=================================================================== */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+.skill-card{ background:var(--bg-panel); padding:26px; }
+.skill-level{ font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; color:var(--plasma-bright); letter-spacing:0.08em; margin-bottom:6px; }
+.skill-name{ font-size:17px; font-weight:600; margin-bottom:10px; font-family:var(--font-display); }
+.skill-list{ font-size:12.5px; color:var(--ink-3); line-height:1.7; }
+
+/* Code work gallery */
+.gallery-eyebrow{
+  margin-top:56px;
+  margin-bottom:0;
+}
+.code-gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:24px;
+}
+@media (max-width:760px){ .code-gallery{ grid-template-columns:1fr; } }
+@media (min-width:500px) and (max-width:760px){ .code-gallery{ grid-template-columns:repeat(2,1fr); } }
+
+.gallery-card{
+  background:var(--bg-panel);
+  border:1px solid var(--line);
+  border-radius:4px;
+  overflow:hidden;
+  transition:border-color .25s, box-shadow .25s;
+}
+.gallery-card:hover{
+  border-color:var(--plasma-dim);
+  box-shadow:0 4px 32px rgba(155,127,232,0.18);
+}
+.gallery-img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+  background:var(--bg-panel-raise);
+}
+.gallery-caption{
+  padding:14px 16px;
+}
+.gallery-caption .rf-meta{ margin-bottom:4px; }
+.gallery-caption h4{ font-size:14px; font-family:var(--font-display); color:var(--ink-1); }
+
+/* ===================================================================
+   CONTACT PAGE
+=================================================================== */
+.contact-wrap{
+  max-width:640px;
+  margin:0 auto;
+  padding-top:72px;
+}
+.contact-hero{
+  text-align:center;
+  padding:56px 0 48px;
+  border-bottom:1px solid var(--line);
+}
+.contact-hero .section-title{ margin-bottom:14px; }
+.contact-hero p{ color:var(--ink-2); font-size:16px; max-width:440px; margin:0 auto 32px; }
+.contact-email-big{
+  font-family:var(--font-mono);
+  font-size:clamp(16px,2.5vw,22px);
+  color:var(--plasma-bright);
+  border:1px solid var(--plasma-dim);
+  padding:14px 28px;
+  border-radius:4px;
+  display:inline-block;
+  margin-bottom:8px;
+  transition:background .2s, color .2s;
+}
+.contact-email-big:hover{ background:var(--plasma-dim); color:var(--bg-void); }
+
+.contact-links-section{
+  padding:40px 0;
+}
+.contact-links-section h3{
+  font-size:15px;
+  font-family:var(--font-mono);
+  color:var(--ink-3);
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  margin-bottom:20px;
+}
+.contact-link-row{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:16px 0;
+  border-bottom:1px solid var(--line);
+  transition:border-color .2s;
+}
+.contact-link-row:hover{ border-color:var(--line-bright); }
+.clr-icon{
+  width:36px; height:36px;
+  border-radius:50%;
+  background:var(--bg-panel-raise);
+  border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px;
+  flex-shrink:0;
+}
+.clr-label{ font-size:15px; color:var(--ink-1); flex:1; }
+.clr-url{ font-family:var(--font-mono); font-size:11.5px; color:var(--ink-3); }
+.clr-arrow{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--plasma-bright);
+  opacity:0;
+  transition:opacity .2s;
+}
+.contact-link-row:hover .clr-arrow{ opacity:1; }
+
+.contact-note{
+  padding-top:24px;
+  font-size:13.5px;
+  color:var(--ink-3);
+  text-align:center;
+  font-style:italic;
+}
+
+/* ===================================================================
+   FOOTER
+=================================================================== */
+footer{
+  padding:48px 0 60px;
+  text-align:center;
+  position:relative;
+  z-index:1;
+  border-top:1px solid var(--line);
+  margin-top:40px;
+}
+.footer-mark{ font-family:var(--font-mono); font-size:12px; color:var(--ink-3); }
+.footer-links{
+  margin-top:14px;
+  display:flex; gap:20px; justify-content:center;
+  font-family:var(--font-mono); font-size:12.5px;
+  flex-wrap:wrap;
+}
+.footer-links a{ color:var(--ink-2); transition:color .2s; }
+.footer-links a:hover{ color:var(--plasma-bright); }
+.footer-sig{ margin-top:28px; color:var(--ink-3); font-size:12px; }
+
+/* ===================================================================
+   SECTION DIVIDER inside pages
+=================================================================== */
+.sec-divider{
+  border:none;
+  border-top:1px solid var(--line);
+  margin:0;
+}
+
+@media (max-width:600px){
+  .page-inner{ padding-top:48px; }
+  .section-sub{ margin-bottom:32px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-mark" onclick="showPage('home')"><b>A. HELGERSON</b> <span style="color:var(--ink-3)">· heliophysics</span></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a onclick="showPage('home')"   data-page="home">Home</a>
+      <a onclick="showPage('about')"  data-page="about">About</a>
+      <a onclick="showPage('edu')"    data-page="edu">Education</a>
+      <a onclick="showPage('research')" data-page="research">Research</a>
+      <a onclick="showPage('pubs')"   data-page="pubs">Publications</a>
+      <a onclick="showPage('confs')"  data-page="confs">Conferences</a>
+      <a onclick="showPage('skills')" data-page="skills">Code &amp; Skills</a>
+      <a onclick="showPage('contact')" data-page="contact" class="nav-contact-btn">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================================================================
+     HOME PAGE
+================================================================ -->
+<div class="page active" id="page-home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Gainesville, FL</div>
+        <h1 class="hero-name">Ainsley M.<br>Helgerson</h1>
+        <div class="hero-role">PhD Student, Electrical &amp; Computer Engineering<br>University of Florida &nbsp;·&nbsp; Heliophysicist</div>
+        <p class="hero-desc">I study how the Sun's wind shapes the space around our planet. <strong>Topics of interest include aeronomy, stream interaction regions, geomagnetic substorms, and the solar sources of ambient space weather.</strong> NASA OSTEM intern, Summer 2026.</p>
+        <div class="hero-links">
+          <a href="mailto:a.helgerson@ufl.edu">a.helgerson@ufl.edu</a>
+          <a href="https://orcid.org/0009-0000-0703-5992" target="_blank" rel="noopener">ORCID</a>
+          <a href="https://www.linkedin.com/in/ainsley-helgerson-a54397241" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/Ains-glitch" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://coffies.stanford.edu/people/ainsley_helgerson" target="_blank" rel="noopener">COFFIES</a>
+          <a href="https://ains-glitch.github.io/erau_solartelescope.github.io/" target="_blank" rel="noopener">ERAU Solar Telescope</a>
+        </div>
+      </div>
+
+      <!-- ===== PARKER SPIRAL ART ===== -->
+      <div class="hero-art" aria-hidden="true">
+        <!--
+          True Parker spiral: field lines are Archimedean spirals
+          described in polar coords as r = r0 + a*theta.
+          We convert ~3 turns into SVG path points, centered at (200,200).
+          The spiral group rotates slowly, while the sun stays fixed.
+        -->
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="#fff7e6" stop-opacity="0.95"/>
+              <stop offset="40%"  stop-color="#f2a65a" stop-opacity="0.7"/>
+              <stop offset="75%"  stop-color="#c98447" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#c98447" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%"   stop-color="#9b7fe8" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="#9b7fe8" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Background ambient glow -->
+          <circle cx="200" cy="200" r="195" fill="url(#sunGlow)"/>
+
+          <!-- Orbit reference rings (NOT rotating with spiral) -->
+          <circle class="orbit-ring" cx="200" cy="200" r="178" stroke="rgba(155,127,232,0.12)" stroke-width="1" fill="none" stroke-dasharray="3 9"/>
+          <circle cx="200" cy="200" r="148" stroke="rgba(155,127,232,0.08)" stroke-width="1" fill="none" stroke-dasharray="2 8"/>
+
+          <!-- ROTATING GROUP: Parker spiral arms + particles -->
+          <g class="spiral-group">
+            <!--
+              Parker spiral arms generated from polar r = a*theta, 3 arms offset by 120deg.
+              Points computed: for theta from 0.3 to 6.5 rad, r = 24 * theta.
+              (so at theta=6.5, r≈156 which stays inside the 195 circle)
+              Arm 1: base angle 0
+              Arm 2: base angle 120deg (2.094 rad)
+              Arm 3: base angle 240deg (4.189 rad)
+              Arm 4: base angle 180deg (pi) — field return sector
+            -->
+
+            <!-- Arm 1 -->
+            <path d="
+              M 224.0 200.0
+              C 228.8 192.5 230.3 183.5 228.1 174.4
+              C 225.0 161.2 216.5 150.0 205.0 141.0
+              C 190.5 129.8 172.3 123.4 156.3 114.0
+              C 140.3 104.5 127.3 91.0 120.5 75.0
+              C 115.5 63.0 114.8 49.8 118.5 37.5
+            " stroke="var(--plasma)" stroke-width="1.5" fill="none" opacity="0.75"/>
+
+            <!-- Arm 2 (offset 120°) -->
+            <path d="
+              M 200.0 224.0
+              C 207.5 228.8 216.5 230.3 225.6 228.1
+              C 238.8 225.0 250.0 216.5 259.0 205.0
+              C 270.2 190.5 276.6 172.3 286.0 156.3
+              C 295.5 140.3 309.0 127.3 325.0 120.5
+              C 337.0 115.5 350.2 114.8 362.5 118.5
+            " stroke="var(--plasma)" stroke-width="1.5" fill="none" opacity="0.75"/>
+
+            <!-- Arm 3 (offset 240°) -->
+            <path d="
+              M 176.0 200.0
+              C 171.2 207.5 169.7 216.5 171.9 225.6
+              C 175.0 238.8 183.5 250.0 195.0 259.0
+              C 209.5 270.2 227.7 276.6 243.7 286.0
+              C 259.7 295.5 272.7 309.0 279.5 325.0
+              C 284.5 337.0 285.2 350.2 281.5 362.5
+            " stroke="var(--teal)" stroke-width="1.5" fill="none" opacity="0.65"/>
+
+            <!-- Arm 4 (offset 300° — extra arm for visual balance) -->
+            <path d="
+              M 200.0 176.0
+              C 192.5 171.2 183.5 169.7 174.4 171.9
+              C 161.2 175.0 150.0 183.5 141.0 195.0
+              C 129.8 209.5 123.4 227.7 114.0 243.7
+              C 104.5 259.7 91.0 272.7 75.0 279.5
+              C 63.0 284.5 49.8 285.2 37.5 281.5
+            " stroke="var(--teal)" stroke-width="1.5" fill="none" opacity="0.65"/>
+
+            <!-- Particles along the spiral arms (represent solar wind parcels) -->
+            <!-- Arm 1 particles -->
+            <circle class="sw-dot" cx="220" cy="187" r="2.5" fill="var(--sun)"/>
+            <circle class="sw-dot" cx="215" cy="155" r="2.2" fill="var(--plasma-bright)"/>
+            <circle class="sw-dot" cx="147" cy="87"  r="2.8" fill="var(--sun)"/>
+
+            <!-- Arm 2 particles -->
+            <circle class="sw-dot" cx="213" cy="220" r="2.5" fill="var(--storm)"/>
+            <circle class="sw-dot" cx="255" cy="212" r="2.2" fill="var(--plasma-bright)"/>
+            <circle class="sw-dot" cx="340" cy="127" r="2.8" fill="var(--storm)"/>
+
+            <!-- Arm 3 particles -->
+            <circle class="sw-dot" cx="180" cy="213" r="2.5" fill="var(--teal)"/>
+            <circle class="sw-dot" cx="220" cy="266" r="2.2" fill="var(--plasma-bright)"/>
+
+            <!-- Arm 4 particles -->
+            <circle class="sw-dot" cx="187" cy="180" r="2.5" fill="var(--sun)"/>
+            <circle class="sw-dot" cx="145" cy="208" r="2.2" fill="var(--teal)"/>
+          </g>
+
+          <!-- Sun core — stays centered, NOT in rotating group -->
+          <circle class="sun-core" cx="200" cy="200" r="38" fill="url(#sunGrad)"/>
+          <circle cx="200" cy="200" r="26" fill="#fff3d9" opacity="0.7"/>
+        </svg>
+
+        <div class="portrait-ring">
+          <div class="portrait-frame">
+            <img src="me.jpg" alt="Portrait of Ainsley Helgerson" onerror="this.closest('.portrait-frame').style.display='none'">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick navigation -->
+    <div class="home-quicknav">
+      <button class="qn-btn" onclick="showPage('about')">About me</button>
+      <button class="qn-btn" onclick="showPage('edu')">Education &amp; Training</button>
+      <button class="qn-btn" onclick="showPage('research')">Research</button>
+      <button class="qn-btn" onclick="showPage('pubs')">Publications</button>
+      <button class="qn-btn" onclick="showPage('confs')">Conferences</button>
+      <button class="qn-btn" onclick="showPage('skills')">Code &amp; Skills</button>
+      <button class="qn-btn" onclick="showPage('contact')">Get in touch</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark">AINSLEY M. HELGERSON · Gainesville, FL</div>
+      <div class="footer-links">
+        <a href="mailto:a.helgerson@ufl.edu">Email</a>
+        <a href="https://orcid.org/0009-0000-0703-5992" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://www.linkedin.com/in/ainsley-helgerson-a54397241" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Ains-glitch" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://coffies.stanford.edu/people/ainsley_helgerson" target="_blank" rel="noopener">COFFIES</a>
+        <a href="https://ains-glitch.github.io/erau_solartelescope.github.io/" target="_blank" rel="noopener">ERAU Solar Telescope</a>
+      </div>
+      <div class="footer-sig">Built with ☀️ and a love for heliophysics</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ================================================================
+     ABOUT PAGE
+================================================================ -->
+<div class="page" id="page-about">
+  <div class="wrap page-inner">
+    <div class="eyebrow">Introduction</div>
+    <h2 class="section-title">About Me</h2>
+    <p class="section-sub">From telescope domes to the heliosphere. A path through space physics, astronomy, aeronomy, and electrical engineering.</p>
+
+    <div class="about-grid">
+      <div class="about-stats">
+        <div class="stat"><div class="stat-num">2031</div><div class="stat-label">Expected PhD</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label">B.S. degrees, ERAU</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label">NASA affiliated programs</div></div>
+      </div>
+      <div class="about-text">
+        <p>I'm an incoming <strong>PhD student in Electrical &amp; Computer Engineering at the University of Florida</strong>, where I'll be advised by Dr. Robert Moore.</p>
+        <p>I came to this from Embry-Riddle Aeronautical University, where I earned dual B.S. degrees in <strong>Space Physics</strong> and <strong>Astronomy &amp; Astrophysics</strong> (Cum Laude) with a minor in Applied Mathematics. Alongside my heliophysics research, I led a NASA Florida Space Grant funded project using muon detection to analyze thunderstorm muon propagation, and attended two summer schools at HAARP and NASA's SHIELD DRIVE Center.</p>
+        <p>This summer, I'm working as a <strong>NASA Office of STEM Engagement (OSTEM) intern</strong>, investigating the solar sources and geospace response of isolated stream interaction regions.</p>
+        <p>Outside of research I enjoy observational astronomy, working with the ERAU 1-meter Cassegrain telescope, and exploring connections between space weather and everyday technology.</p>
+        <!-- Add more about yourself here! -->
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark">AINSLEY M. HELGERSON · Gainesville, FL</div>
+      <div class="footer-links">
+        <a href="mailto:a.helgerson@ufl.edu">Email</a>
+        <a href="https://orcid.org/0009-0000-0703-5992" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://www.linkedin.com/in/ainsley-helgerson-a54397241" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Ains-glitch" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="footer-sig">Built with ☀️ and a love for heliophysics</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ================================================================
+     EDUCATION PAGE
+================================================================ -->
+<div class="page" id="page-edu">
+  <div class="wrap page-inner">
+    <div class="eyebrow">Academic Record</div>
+    <h2 class="section-title">Education &amp; Training</h2>
+    <p class="section-sub">A log of where the physics was learned.</p>
+
+    <div class="log-entry">
+      <div class="log-date">2026 — Spring 2031</div>
+      <div>
+        <div class="log-title">Doctor of Philosophy, Electrical &amp; Computer Engineering</div>
+        <div class="log-org">University of Florida · Gainesville, FL</div>
+        <div class="log-desc">Advised by Dr. Robert Moore</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">2021 — 2025</div>
+      <div>
+        <div class="log-title">B.S. Space Physics &amp; B.S. Astronomy and Astrophysics</div>
+        <div class="log-org">Embry-Riddle Aeronautical University · Daytona Beach, FL</div>
+        <div class="log-desc">Minor in Applied Mathematics. Graduated Cum Laude, Honors Program.</div>
+        <div class="log-tags"><span class="tag">Cum Laude</span><span class="tag">Honors Program</span><span class="tag sun">Provost Scholarship</span></div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">Summer 2025</div>
+      <div>
+        <div class="log-title">Polar Aeronomy and Radio Science (PARS) Summer School</div>
+        <div class="log-org">University of Alaska Fairbanks &amp; HAARP</div>
+        <div class="log-desc">Conducted an ionospheric heating experiment at HAARP; trained in IRI experiment design, diagnostics, and data analysis with NSF's SAGO facilities.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">Summer 2025</div>
+      <div>
+        <div class="log-title">SHIELD Summer School</div>
+        <div class="log-org">NASA SHIELD DRIVE Center · Boston, MA</div>
+        <div class="log-desc">MHD fundamentals, solar wind variability, magnetic reconnection, and energetic neutral atom (ENA) measurements — plus the structure and evolution of the heliosphere from modern and paleo perspectives.</div>
+      </div>
+    </div>
+
+    <div class="log-entry">
+      <div class="log-date">Summer 2024</div>
+      <div>
+        <div class="log-title">BSA REU Internship</div>
+        <div class="log-org">Big South Fork Area Research Experience for Undergraduates</div>
+        <div class="log-desc">Undergraduate research internship. See poster for details.</div>
+        <div class="log-tags">
+          <span class="tag storm"><a href="bsa.pdf" target="_blank" style="color:inherit">View Poster (PDF)</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark">AINSLEY M. HELGERSON · Gainesville, FL</div>
+      <div class="footer-links">
+        <a href="mailto:a.helgerson@ufl.edu">Email</a>
+        <a href="https://orcid.org/0009-0000-0703-5992" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://www.linkedin.com/in/ainsley-helgerson-a54397241" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Ains-glitch" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="footer-sig">Built with ☀️ and a love for heliophysics</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ================================================================
+     RESEARCH PAGE
+================================================================ -->
+<div class="page" id="page-research">
+  <div class="wrap page-inner">
+    <div class="eyebrow">Projects &amp; Investigations</div>
+    <h2 class="section-title">Research</h2>
+    <p class="section-sub">Current work sits at the intersection of solar wind physics and space weather forecasting.</p>
+
+    <div class="research-feature">
+      <div>
+        <div class="rf-meta lead">NASA OSTEM Internship · Summer 2026</div>
+        <div class="rf-title">Characterizing the Solar Sources and Geospace Response of Isolated Stream Interaction Regions with Embedded Periodic Mesoscale Solar Wind Structures</div>
+        <div class="rf-links">
+          <a onclick="showPage('pubs')">→ In progress manuscript</a>
+        </div>
+      </div>
+      <div>
+        <div class="rf-meta purple">Method</div>
+        <p class="rf-desc">Investigating the solar sources, solar wind properties, and geospace impacts of isolated stream interaction regions (SIRs) using Wang-Sheeley-Arge (WSA) modeling and spacecraft observations, to improve understanding of ambient solar wind driven space weather. Presenting as a poster at the 57th AAS Solar Physics Division Conference, August 2026.</p>
+        <div class="rf-badges"><span class="tag">WSA Model</span><span class="tag">SIRs</span><span class="tag">Space Weather</span></div>
+      </div>
+    </div>
+
+    <div class="research-feature">
+      <div>
+        <div class="rf-meta side">Principal Investigator · Fall 2024 – Spring 2026</div>
+        <div class="rf-title">BoTTLE — Bounded Transient Time Leader Emissions Tracking &amp; Strike Prediction</div>
+        <div class="rf-links">
+          <a href="bottle.pdf" target="_blank">→ View poster</a>
+        </div>
+      </div>
+      <div>
+        <div class="rf-meta purple">Method</div>
+        <p class="rf-desc">Led a NASA Florida Space Grant Consortium and ERAU funded project predicting lightning strikes using an array of muon detectors alongside RADAR data, examining correlations between muon flux and lightning discharge. 2025 NASA FSGC Grant Winner; 2025-2026 ERAU IGNITE Grant Award Nominee.</p>
+        <div class="rf-badges"><span class="tag storm">Muon Detection</span><span class="tag storm">RADAR</span><span class="tag storm">Atmospheric Physics</span></div>
+      </div>
+    </div>
+
+    <div class="research-feature">
+      <div>
+        <div class="rf-meta purple">Spring 2025</div>
+        <div class="rf-title">Solar Sources of Ambient Solar Wind Driven Substorms with ADAPT-WSA</div>
+        <div class="rf-links">
+          <a href="wsa.pdf" target="_blank">→ View poster</a>
+        </div>
+      </div>
+      <div>
+        <div class="rf-meta purple">Method</div>
+        <p class="rf-desc">Investigating geoeffective solar wind formation linked to substorm activity using the ADAPT-WSA model; developing methods to classify solar wind properties and identify source regions tied to geomagnetic substorms, excluding large-scale solar events.</p>
+        <div class="rf-badges"><span class="tag">ADAPT-WSA</span><span class="tag">Substorms</span></div>
+      </div>
+    </div>
+
+    <div class="minor-projects">
+      <div class="minor-card">
+        <div class="rf-meta purple">Spring 2025</div>
+        <h4>Photometric Variability &amp; Habitable Zones — Castor C</h4>
+        <p>Investigated stellar flare activity in the M-dwarf system Castor C using the ERAU 1-meter telescope to assess impacts on exoplanet habitability.</p>
+      </div>
+      <div class="minor-card">
+        <div class="rf-meta purple">Spring 2025</div>
+        <h4>Structural Analysis of Galaxy NGC 3665</h4>
+        <p>Modeled surface brightness profiles from DECam g, r, and z filter data to infer the galaxy's evolutionary history via 1D/2D light distribution fitting in Python.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark">AINSLEY M. HELGERSON · Gainesville, FL</div>
+      <div class="footer-links">
+        <a href="mailto:a.helgerson@ufl.edu">Email</a>
+        <a href="https://orcid.org/0009-0000-0703-5992" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://www.linkedin.com/in/ainsley-helgerson-a54397241" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Ains-glitch" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="footer-sig">Built with ☀️ and a love for heliophysics</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ================================================================
+     PUBLICATIONS PAGE
+================================================================ -->
+<div class="page" id="page-pubs">
+  <div class="wrap page-inner">
+    <div class="eyebrow">Scholarly Work</div>
+    <h2 class="section-title">Publications</h2>
+    <p class="section-sub">One paper in progress, one under review.</p>
+
+    <div class="pub">
+      <div class="pub-status">In Progress</div>
+      <div>
+        <div class="pub-title">Characterizing the Solar Sources and Geospace Response of Isolated Stream Interaction Regions with Embedded Periodic Mesoscale Solar Wind Structures</div>
+        <div class="pub-authors"><b>Helgerson, A.</b>, Wallace, S., Viall, N. M., Kepko, L., &amp; Di Matteo, S.</div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-status">Under Review</div>
+      <div>
+        <div class="pub-title">Universal Scaling Law of Electron Energization in 3-D Reconnection: Application to Astrophysical Plasmas</div>
+        <div class="pub-authors">Liou, Y.-L., Nykyri, K., Ma, X., <b>Helgerson, A.</b>, Otto, A., Egedal, J., &amp; Gradney, P.</div>
+        <div class="pub-ref">Manuscript ID: NATASTRON-25121648</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark">AINSLEY M. HELGERSON · Gainesville, FL</div>
+      <div class="footer-links">
+        <a href="mailto:a.helgerson@ufl.edu">Email</a>
+        <a href="https://orcid.org/0009-0000-0703-5992" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://www.linkedin.com/in/ainsley-helgerson-a54397241" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Ains-glitch" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="footer-sig">Built with ☀️ and a love for heliophysics</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ================================================================
+     CONFERENCES PAGE
+================================================================ -->
+<div class="page" id="page-confs">
+  <div class="wrap page-inner">
+    <div class="eyebrow">Presentations &amp; Events</div>
+    <h2 class="section-title">Conferences &amp; Symposiums</h2>
+    <p class="section-sub">Selected highlights — full list available on request.</p>
+
+    <div class="conf-list">
+      <div class="conf-row">
+        <div class="conf-date">Aug 2026</div>
+        <div>
+          <div class="conf-name">57th AAS Solar Physics Division (SPD) Conference</div>
+          <div class="conf-detail">Poster: Characterizing the Solar Sources and Geospace Response of Isolated SIRs with Embedded Periodic Mesoscale Solar Wind Structures.</div>
+          <div class="conf-mentor">Mentors: Nicholeen M. Viall, Samantha Wallace</div>
+        </div>
+      </div>
+      <div class="conf-row">
+        <div class="conf-date">Apr 2026</div>
+        <div>
+          <div class="conf-name">ERAU Discovery Day</div>
+          <div class="conf-detail">Poster: BoTTLE — Bounded Thunderstorm Tracking of Lightning Events with Muon Detection.</div>
+          <div class="conf-mentor">Mentor: Dr. Jeremy Riousset</div>
+        </div>
+      </div>
+      <div class="conf-row">
+        <div class="conf-date">Dec 2025</div>
+        <div>
+          <div class="conf-name">American Geophysical Union (AGU) Conference</div>
+          <div class="conf-detail">COFFIES outreach participation; attended talks and oral sessions.</div>
+        </div>
+      </div>
+      <div class="conf-row">
+        <div class="conf-date">Oct 2025</div>
+        <div>
+          <div class="conf-name">DASH / IHDEA Conference</div>
+          <div class="conf-detail">Discussed open-source heliophysics platforms; attended workshops and poster sessions.</div>
+        </div>
+      </div>
+      <div class="conf-row">
+        <div class="conf-date">Dec 2024</div>
+        <div>
+          <div class="conf-name">American Geophysical Union (AGU) Conference</div>
+          <div class="conf-detail">Poster: Analyzing Short-term Solar Activity Bursts — Exploring the Capability for Predicting Next Burst's Properties.</div>
+          <div class="conf-mentor">Mentors: Dr. Masusumi Dikpati, Kiran Jain, Breno Raphaldini</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark">AINSLEY M. HELGERSON · Gainesville, FL</div>
+      <div class="footer-links">
+        <a href="mailto:a.helgerson@ufl.edu">Email</a>
+        <a href="https://orcid.org/0009-0000-0703-5992" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://www.linkedin.com/in/ainsley-helgerson-a54397241" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Ains-glitch" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="footer-sig">Built with ☀️ and a love for heliophysics</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ================================================================
+     SKILLS + CODE PAGE
+================================================================ -->
+<div class="page" id="page-skills">
+  <div class="wrap page-inner">
+    <div class="eyebrow">Technical Expertise</div>
+    <h2 class="section-title">Code &amp; Skills</h2>
+    <p class="section-sub">Software, hardware, and the platforms tying it all together.</p>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-level">Expert</div>
+        <div class="skill-name">MATLAB</div>
+        <div class="skill-list">Numerical computation &amp; simulation, algorithm development<br>Curve Fitting · Deep Learning · Signal Processing · Symbolic Math</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-level">Expert</div>
+        <div class="skill-name">Python</div>
+        <div class="skill-list">Astropy · Pandas · NumPy · Matplotlib · Seaborn · Photutils<br>Pyimfit · Streamlit · Qiskit · Lightkurve · SunPy</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-level">Expert</div>
+        <div class="skill-name">LaTeX</div>
+        <div class="skill-list">Research paper design &amp; publishing<br>Overleaf workflow</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-level">Trained</div>
+        <div class="skill-name">ERAU 1-m Cassegrain Telescope</div>
+        <div class="skill-list">CCD camera systems · filter wheels · spectrograph alignment<br>Dome operation · guiding · data acquisition</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-level">Expert</div>
+        <div class="skill-name">PASCO Capstone 850</div>
+        <div class="skill-list">Voltage, current, temperature, force, motion, light, sound,<br>acceleration &amp; magnetic field sensors · photogates</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-level">Platforms</div>
+        <div class="skill-name">Tools &amp; Software</div>
+        <div class="skill-list">PyCharm · VS Code · Jupyter · GitHub · Overleaf<br>Google Colab · AstroImageJ · SAOImageDS9 · Canvas Instructor</div>
+      </div>
+    </div>
+
+    <!-- CODE WORK GALLERY -->
+    <div class="eyebrow gallery-eyebrow">Code Work</div>
+    <h3 class="section-title" style="font-size:clamp(22px,3vw,28px); margin-bottom:6px;">Selected Outputs</h3>
+    <p class="section-sub">A sample of figures and analyses produced across Python, MATLAB, and Google Colab.</p>
+
+    <div class="code-gallery">
+      <div class="gallery-card">
+        <img class="gallery-img" src="galaxymodel_python.png" alt="Galaxy surface brightness model produced in Python" loading="lazy"
+             onerror="this.style.background='var(--bg-panel-raise)'; this.style.height='180px'; this.alt='Image not found — place galaxymodel_python.png in the same folder';">
+        <div class="gallery-caption">
+          <div class="rf-meta purple">Python · Pyimfit / Matplotlib</div>
+          <h4>Galaxy NGC 3665 — Surface Brightness Model</h4>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <img class="gallery-img" src="ibex_low_googlecolab.jpeg" alt="IBEX data analysis in Google Colab" loading="lazy"
+             onerror="this.style.background='var(--bg-panel-raise)'; this.style.height='180px';">
+        <div class="gallery-caption">
+          <div class="rf-meta purple">Google Colab · Python</div>
+          <h4>IBEX Low Energy Neutral Atom Analysis</h4>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <img class="gallery-img" src="meteorpath_matlab.png" alt="Meteor path trajectory plotted in MATLAB" loading="lazy"
+             onerror="this.style.background='var(--bg-panel-raise)'; this.style.height='180px';">
+        <div class="gallery-caption">
+          <div class="rf-meta purple">MATLAB</div>
+          <h4>Meteor Path Trajectory Visualization</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark">AINSLEY M. HELGERSON · Gainesville, FL</div>
+      <div class="footer-links">
+        <a href="mailto:a.helgerson@ufl.edu">Email</a>
+        <a href="https://orcid.org/0009-0000-0703-5992" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://www.linkedin.com/in/ainsley-helgerson-a54397241" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Ains-glitch" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="footer-sig">Built with ☀️ and a love for heliophysics</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ================================================================
+     CONTACT PAGE
+================================================================ -->
+<div class="page" id="page-contact">
+  <div class="wrap contact-wrap">
+    <div class="contact-hero">
+      <div class="eyebrow" style="justify-content:center">Ask a Question · Get in Contact</div>
+      <h2 class="section-title">Let's Connect</h2>
+      <p>Whether you have a question about my research, want to collaborate, or are just curious about heliophysics — my inbox is open.</p>
+      <a href="mailto:a.helgerson@ufl.edu" class="contact-email-big">a.helgerson@ufl.edu</a>
+    </div>
+
+    <div class="contact-links-section">
+      <h3>Find me elsewhere</h3>
+
+      <a class="contact-link-row" href="https://orcid.org/0009-0000-0703-5992" target="_blank" rel="noopener">
+        <div class="clr-icon">🔬</div>
+        <div>
+          <div class="clr-label">ORCID</div>
+          <div class="clr-url">orcid.org/0009-0000-0703-5992</div>
+        </div>
+        <div class="clr-arrow">→</div>
+      </a>
+
+      <a class="contact-link-row" href="https://www.linkedin.com/in/ainsley-helgerson-a54397241" target="_blank" rel="noopener">
+        <div class="clr-icon">💼</div>
+        <div>
+          <div class="clr-label">LinkedIn</div>
+          <div class="clr-url">linkedin.com/in/ainsley-helgerson-a54397241</div>
+        </div>
+        <div class="clr-arrow">→</div>
+      </a>
+
+      <a class="contact-link-row" href="https://github.com/Ains-glitch" target="_blank" rel="noopener">
+        <div class="clr-icon">💻</div>
+        <div>
+          <div class="clr-label">GitHub</div>
+          <div class="clr-url">github.com/Ains-glitch</div>
+        </div>
+        <div class="clr-arrow">→</div>
+      </a>
+
+      <a class="contact-link-row" href="https://coffies.stanford.edu/people/ainsley_helgerson" target="_blank" rel="noopener">
+        <div class="clr-icon">☀️</div>
+        <div>
+          <div class="clr-label">COFFIES</div>
+          <div class="clr-url">coffies.stanford.edu/people/ainsley_helgerson</div>
+        </div>
+        <div class="clr-arrow">→</div>
+      </a>
+
+      <a class="contact-link-row" href="https://ains-glitch.github.io/erau_solartelescope.github.io/" target="_blank" rel="noopener">
+        <div class="clr-icon">🔭</div>
+        <div>
+          <div class="clr-label">ERAU Solar Telescope Site</div>
+          <div class="clr-url">ains-glitch.github.io/erau_solartelescope.github.io</div>
+        </div>
+        <div class="clr-arrow">→</div>
+      </a>
+    </div>
+
+    <p class="contact-note">I aim to respond to all messages within a few business days. For time-sensitive inquiries, email is best.</p>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark">AINSLEY M. HELGERSON · Gainesville, FL</div>
+      <div class="footer-links">
+        <a href="mailto:a.helgerson@ufl.edu">Email</a>
+        <a href="https://orcid.org/0009-0000-0703-5992" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://www.linkedin.com/in/ainsley-helgerson-a54397241" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Ains-glitch" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <div class="footer-sig">Built with ☀️ and a love for heliophysics</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+// ===== SPA PAGE ROUTER =====
+const pages = {
+  home:    document.getElementById('page-home'),
+  about:   document.getElementById('page-about'),
+  edu:     document.getElementById('page-edu'),
+  research:document.getElementById('page-research'),
+  pubs:    document.getElementById('page-pubs'),
+  confs:   document.getElementById('page-confs'),
+  skills:  document.getElementById('page-skills'),
+  contact: document.getElementById('page-contact'),
+};
+
+const navLinks = document.querySelectorAll('.nav-links a[data-page]');
+
+function showPage(id){
+  Object.values(pages).forEach(p => p.classList.remove('active'));
+  navLinks.forEach(a => a.classList.remove('active'));
+
+  const target = pages[id];
+  if(target){
+    target.classList.add('active');
+    window.scrollTo(0,0);
+  }
+  const link = document.querySelector(`.nav-links a[data-page="${id}"]`);
+  if(link) link.classList.add('active');
+
+  // close mobile menu
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+// Nav toggle
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// Set home active on load
+showPage('home');
+</script>
+</body>
+</html>
